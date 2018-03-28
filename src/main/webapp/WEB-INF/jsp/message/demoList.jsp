@@ -73,6 +73,7 @@
 			<form id="changeFrom" method="post">
 				<table>
 					<input type="hidden" name="id" id="id" />
+					<input type="hidden" name="status" id="status" />
 					<tr>
 						<td>姓名:</td>
 						<td><input name="name" class="easyui-textbox"
@@ -379,7 +380,13 @@
 										window.location.href = "demoList";
 									});
 								}else{
-									$.messager.alert('操作提示',data.msg.replace(/,/g,'<br>'),'info');
+									//$.messager.alert('操作提示',data.msg.replace(/,/g,'<br>'),'info');
+									$.messager.alert({
+										title: '操作提示',
+										height: 370,
+										width: 400,
+										msg: "<div style='overflow-y:scroll;height:275px;width:375px;mapping-top:20px;'>" + data.msg.replace(/,/g, '<br>') + "</div>"
+									});
 								}
 							}
 						},

@@ -57,13 +57,6 @@ public class Demo implements Serializable {
 		this.sex = sex;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
 
 	public String getCard() {
 		return card;
@@ -79,6 +72,14 @@ public class Demo implements Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

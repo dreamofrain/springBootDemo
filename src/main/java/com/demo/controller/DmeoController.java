@@ -87,6 +87,9 @@ public class DmeoController {
 	@RequestMapping(value="demo.update.action",method=RequestMethod.POST)
 	public Integer updateDemo(Demo demo) {//spring将from表单对象按照对应的属性名封装为对象
 		try {
+			if ("".equals(demo.getStatus())||null==demo.getStatus()) {
+				demo.setStatus("无");
+			}
 			//保存和修改，调用的是一个方法
 			demoService.save(demo);
 			return 1;

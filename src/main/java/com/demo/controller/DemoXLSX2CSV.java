@@ -175,22 +175,21 @@ public class DemoXLSX2CSV {
 							t.setName(value);
 						}
 					}
-					if (thisCol == 1) {
+					else if (thisCol == 1) {
 						if ("♂".equals(value) || "♀".equals(value)) {
 							t.setSex(value);
 						} else {
 							errorBuffer.append(",列'" + headers[thisCol] + "'不匹配！");
 						}
 					}
-					if (thisCol == 2) {
+					else if (thisCol == 2) {
 						if ("一级".equals(value) || "二级".equals(value) || "三级".equals(value)) {
 							t.setType(value);
 						} else {
 							errorBuffer.append(",列'" + headers[thisCol] + "'不匹配！");
-
 						}
 					}
-					if (thisCol == 3) {
+					else if (thisCol == 3) {
 						String vaild = null;
 						switch (t.getType()) {
 						case "一级":
@@ -216,19 +215,19 @@ public class DemoXLSX2CSV {
 								errorBuffer.append(",列'" + headers[thisCol] + "'与类别不匹配！");
 							}
 						}
-					}
-					if (!errorBuffer.toString().equals("") || (errorBuffer.length() > 0)) {
-						// 判断一行中是否有错误信息，有则将该行的行号及错误信息记录下来
-						lineBuffer.append(",----------------------------------,第" + (thisRow + 1) + "行数据不符合导入规则!");
-						lineBuffer.append(errorBuffer + "");// 将单元格错误信息存储到列错误信息中
-						errorBuffer.setLength(0);// 清空单元格错误信息以存储新一行的错误信息
-					} else {
-						// 判断是否已存在错误信息，如果有错误信息则清空对象且不添加到list
-						if (!lineBuffer.toString().equals("") || (lineBuffer.length() > 0)) {
-							t = null;
-							lists.clear();
+						if (!errorBuffer.toString().equals("") || (errorBuffer.length() > 0)) {
+							// 判断一行中是否有错误信息，有则将该行的行号及错误信息记录下来
+							lineBuffer.append(",----------------------------------,第" + (thisRow + 1) + "行数据不符合导入规则!");
+							lineBuffer.append(errorBuffer + "");// 将单元格错误信息存储到列错误信息中
+							errorBuffer.setLength(0);// 清空单元格错误信息以存储新一行的错误信息
 						} else {
-							lists.add(t);
+							// 判断是否已存在错误信息，如果有错误信息则清空对象且不添加到list
+							if (!lineBuffer.toString().equals("") || (lineBuffer.length() > 0)) {
+								t=null;
+								lists.clear();
+							} else {
+								lists.add(t);
+							}
 						}
 					}
 				}
@@ -310,7 +309,7 @@ public class DemoXLSX2CSV {
 		JSONObject json = new JSONObject();
 		// 如果有错误信息则不导入数据且返回错误信息
 		if (lineBuffer.length() > 0) {
-			lineBuffer.insert(0, "导入文件失败!");
+			lineBuffer.insert(0, "---------导入文件失败-----------,----------------------------------");
 			json.put("msg", lineBuffer.toString());
 			out.write(json.toString());
 		} else {
