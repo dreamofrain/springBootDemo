@@ -13,7 +13,7 @@
 		onclick="showMessage()">报文数据</a>&nbsp;
 	<c:if test="${sessionScope.user.loginId=='admin'}">
 		<a class="easyui-linkbutton" iconCls="icon-download" onclick="downloadMessages()">下载报文</a>&nbsp;
-		<a class="easyui-linkbutton" iconCls="icon-remove" onclick="removeMassages()">删除报文</a>
+		<a class="easyui-linkbutton" iconCls="icon-remove" onclick="removeMassages()">打回报文</a>
 	</c:if>
 	<c:if test="${sessionScope.user.loginId!='admin'}">
 		<c:forEach var="per" items="${sessionScope.perList }">
@@ -21,7 +21,7 @@
 				<a class="easyui-linkbutton" iconCls="icon-download" onclick="downloadMessages()">下载报文</a>&nbsp;
 			</c:if>
 			<c:if test="${per=='9' }">
-				<a class="easyui-linkbutton" iconCls="icon-remove" onclick="removeMassages()">删除报文</a>
+				<a class="easyui-linkbutton" iconCls="icon-remove" onclick="removeMassages()">打回报文</a>
 			</c:if>
 		</c:forEach>
 	</c:if>
